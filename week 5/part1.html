@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The priority of selectors</title>
+    <style type="text/css">
+    * {font: 20px "Comic Sans MS";}
+    MyCustomizeTag {
+            display: block;
+            text-align: center;
+            text-transform: capitalize;
+            text-decoration: underline;
+            width: 500px;
+        }
+    div {
+            background-color: yellow;
+            margin: 0px 0px 5px 5px;
+            width: 300px;
+        }
+    .GroupFormat {
+            background-color: yellow;
+            margin: 0px 0px 5px 5px;
+            width: 500px;
+            color: #f00;
+
+        }
+    #TheHighestPriority {
+    background-color: #000;
+    font-weight: none;
+    font: italic 30px "Times New Roman";
+    color: #fff;
+    width: 500px;
+}
+    </style>
+</head>
+
+<body>
+    <MyCustomizeTag>Here is customize tag</MyCustomizeTag>
+    <div>The first paragraph.</div>
+    <div class="GroupFormat" id="GroupFormat">The second paragraph.</div>
+    <div class="GroupFormat" id="TheHighestPriority">The third paragraph.</div>
+    <div>The fourth paragraph.</div>
+    <div class="GroupFormat" id="GroupFormat">The fifth paragraph.</div>
+    <div class="GroupFormat" id="GroupFormat">The sixth paragraph.</div>
+    <div>The seventh paragraph.</div>
+</body>
+</html>
