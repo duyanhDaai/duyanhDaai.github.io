@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .profile-picture img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        .profile-info label {
+            font-weight: bold;
+        }
+        .profile-info p {
+            margin: 5px 0;
+        }
+        .edit-profile-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .edit-form input[type="text"],
+        .edit-form textarea {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .edit-form button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Profile</h1>
+        <div class="profile-picture">
+            <img id="profileImage" src="profile-picture.jpg" alt="Profile Picture">
+            <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+            <label class="edit-profile-button" for="imageUpload">Change Picture</label>
+        </div>
+        <div class="profile-info">
+            <label for="username">Username:</label>
+            <p id="username">DuyAnh</p>
+            <label for="fullname">Full Name:</label>
+            <p id="fullname">Vũ Nguyễn Duy Anh</p>
+            <label for="email">Email:</label>
+            <p id="email">23070417@vnu.edu.vn</p>
+            <label for="phone">Phone:</label>
+            <p id="phone">037xxxxxxx</p>
+            <label for="bio">Bio:</label>
+            <p id="bio">...</p>
+        </div>
+        <button class="edit-profile-button" onclick="toggleEditForm()">Edit Profile</button>
+        <form class="edit-form" id="editForm" style="display: none;">
+            <label for="editUsername">Username:</label>
+            <input type="text" id="editUsername" value="DuyAnh">
+            <label for="editFullname">Full Name:</label>
+            <input type="text" id="editFullname" value="Vũ Nguyễn Duy Anh">
+            <label for="editEmail">Email:</label>
+            <input type="text" id="editEmail" value="230070417@vnu.edu.vn">
+            <label for="editPhone">Phone:</label>
+            <input type="text" id="editPhone" value="037xxxxxxx">
+            <label for="editBio">Bio:</label>
+            <textarea id="editBio">...</textarea>
+            <button type="button" onclick="saveProfile()">Save</button>
+            <button type="button" onclick="cancelEdit()">Cancel</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleEditForm() {
+            var editForm = document.getElementById("editForm");
+            editForm.style.display = editForm.style.display === "none" ? "block" : "none";
+        }
+
+        function saveProfile() {
+            var username = document.getElementById("editUsername").value;
+            var fullname = document.getElementById("editFullname").value;
+            var email = document.getElementById("editEmail").value;
+            var phone = document.getElementById("editPhone").value;
+            var bio = document.getElementById("editBio").value;
+
+            document.getElementById("username").textContent = username;
+            document.getElementById("fullname").textContent = fullname;
+            document.getElementById("email").textContent = email;
+            document.getElementById("phone").textContent = phone;
+            document.getElementById("bio").textContent = bio;
+
+            // Hide edit form after saving
+            document.getElementById("editForm").style.display = "none";
+        }
+
+        function cancelEdit() {
+            var editForm = document.getElementById("editForm");
+            // Reset form values
+            editForm.reset();
+
+            // Hide edit form
+            editForm.style.display = "none";
+        }
+
+        // Function to handle image upload
+        document.getElementById('imageUpload').onchange = function(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById('profileImage');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        };
+    </script>
+</body>
+</html>
